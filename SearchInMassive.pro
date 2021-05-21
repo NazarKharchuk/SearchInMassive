@@ -11,10 +11,12 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    searchalgoritms.cpp \
     workwithmass.cpp
 
 HEADERS += \
     mainwindow.h \
+    searchalgoritms.h \
     workwithmass.h
 
 FORMS += \

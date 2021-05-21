@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStatusBar>
 #include <QRegularExpressionValidator>
+#include "searchalgoritms.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,9 +19,12 @@ public:
     ~MainWindow();
 
 private:
+    SearchAlgoritms * algoritm;
     Ui::MainWindow *ui;
 private slots:
     void SizeEdit_changet();
+    void SearchEdit_changet();
     void CreateButton_clicked();
+    void SearchButton_clicked();
 };
 #endif // MAINWINDOW_H
