@@ -21,5 +21,6 @@ private:
     Ui::MainWindow *ui;
 private slots:
     void SizeEdit_changet();
+    void CreateButton_clicked();
 };
 #endif // MAINWINDOW_H
