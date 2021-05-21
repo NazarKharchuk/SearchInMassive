@@ -53,6 +53,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="createButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Згенерувати масив</string>
             </property>
@@ -129,6 +132,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="searchButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Шукати</string>
             </property>
@@ -162,13 +168,20 @@
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="label_3">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="text">
            <string>Індекс елемента:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="sizeEdit_2"/>
+         <widget class="QLineEdit" name="sizeEdit_2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -199,6 +212,9 @@
         </property>
         <item>
          <widget class="QPushButton" name="showMassButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Переглянути масив</string>
           </property>
@@ -206,6 +222,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="saveButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Зберегти результати</string>
           </property>
