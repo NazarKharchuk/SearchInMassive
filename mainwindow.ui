@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>298</width>
-    <height>360</height>
+    <width>412</width>
+    <height>339</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,14 @@
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_5">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetMinAndMaxSize</enum>
+        </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
@@ -78,19 +84,6 @@
          </widget>
         </item>
         <item>
-         <spacer name="verticalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <property name="bottomMargin">
            <number>11</number>
@@ -131,6 +124,9 @@
             </item>
             <item>
              <widget class="QComboBox" name="comboBox">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <item>
                <property name="text">
                 <string>Послідовний пошук</string>
@@ -186,23 +182,16 @@
         </item>
         <item>
          <widget class="Line" name="line_2">
+          <property name="maximumSize">
+           <size>
+            <width>290</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -217,9 +206,28 @@
            </widget>
           </item>
           <item>
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QLineEdit" name="indexEdit">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>152</width>
+              <height>16777215</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -227,23 +235,16 @@
         </item>
         <item>
          <widget class="Line" name="line_3">
+          <property name="maximumSize">
+           <size>
+            <width>290</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -258,7 +259,32 @@
             <property name="text">
              <string>Переглянути масив</string>
             </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_4">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QPushButton" name="saveButton">
@@ -276,6 +302,36 @@
       </item>
      </layout>
     </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Масив:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="massiveTable">
+        <property name="maximumSize">
+         <size>
+          <width>121</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderCascadingSectionResizes">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+         <bool>false</bool>
+        </attribute>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -283,7 +339,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>298</width>
+     <width>412</width>
      <height>26</height>
     </rect>
    </property>
@@ -291,5 +347,38 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>showMassButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>massiveTable</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>107</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>404</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>showMassButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_5</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>65</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>43</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

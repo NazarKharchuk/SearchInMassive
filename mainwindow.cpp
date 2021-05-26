@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->label_5->hide();
+    ui->massiveTable->hide();
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
     QRegularExpression reg_exp("[0-9]{1,5}");
     ui->sizeEdit->setValidator(new QRegularExpressionValidator(reg_exp, this));
     ui->searchEdit->setValidator(new QRegularExpressionValidator(reg_exp, this));
@@ -37,8 +40,15 @@ void MainWindow::SizeEdit_changet(){
 }
 
 void MainWindow::CreateButton_clicked(){
+    ui->label_5->setVisible(false);
+    ui->massiveTable->setVisible(false);
     ui->showMassButton->setEnabled(true);
     ui->searchEdit->setEnabled(true);
+    ui->saveButton->setEnabled(false);
+    ui->searchEdit->clear();
+    ui->comboBox->setEnabled(true);
+    ui->indexEdit->clear();
+    ui->statusbar->clearMessage();
     algoritm->delete_mass();
     algoritm->setSize(ui->sizeEdit->text().toInt());
     algoritm->create_mass();
@@ -46,6 +56,10 @@ void MainWindow::CreateButton_clicked(){
 }
 
 void MainWindow::SearchButton_clicked(){
+    if(!ui->indexEdit->text().isEmpty()){
+        ui->massiveTable->item(ui->indexEdit->text().toInt(), 0)->setBackground(Qt::white);
+    }
+    ui->saveButton->setEnabled(true);
     int p=-1;
     QString str = ui->comboBox->currentText();
     if(str == "Послідовний пошук"){
@@ -75,6 +89,8 @@ void MainWindow::SearchButton_clicked(){
     }
     else {
         ui->indexEdit->setText(QString::number(p));
+        ui->massiveTable->item(p, 0)->setBackground(Qt::yellow);
+
     }
 }
 
@@ -88,3 +104,23 @@ void MainWindow::SearchEdit_changet(){
         ui->searchEdit->clear();
     }
 }
+
+void MainWindow::on_showMassButton_clicked()
+{
+    ui->massiveTable->setRowCount(algoritm->getSize());
+    ui->massiveTable->setColumnCount(1);
+    for (int i=0;i<ui->massiveTable->rowCount();i++){
+        for (int j=0;j<ui->massiveTable->columnCount();j++){
+            QTableWidgetItem *newItem = new QTableWidgetItem(tr("%1").arg(algoritm->getElement(i)));
+            ui->massiveTable->setItem(i, j, newItem);
+        }
+    }
+    ui->massiveTable->setHorizontalHeaderLabels(QStringList() << "Елемент");
+}
+
+
+void MainWindow::on_saveButton_clicked()
+{
+
+}
+

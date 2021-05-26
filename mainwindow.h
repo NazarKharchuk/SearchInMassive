@@ -26,5 +26,7 @@ private slots:
     void SearchEdit_changet();
     void CreateButton_clicked();
     void SearchButton_clicked();
+    void on_showMassButton_clicked();
+    void on_saveButton_clicked();
 };
 #endif // MAINWINDOW_H

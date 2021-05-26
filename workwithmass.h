@@ -11,6 +11,8 @@ public:
     void create_mass();
     void delete_mass();
     void init_mass();
+    int getSize();
+    int getElement(int);
 protected:
     int* massive;
     int size;
