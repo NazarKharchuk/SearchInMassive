@@ -5,6 +5,7 @@
 #include <QStatusBar>
 #include <QRegularExpressionValidator>
 #include "searchalgoritms.h"
+#include <QFile>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

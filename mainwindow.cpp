@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->label_5->hide();
     ui->massiveTable->hide();
-    layout()->setSizeConstraint(QLayout::SetFixedSize);
+    //layout()->setSizeConstraint(QLayout::SetFixedSize);
     QRegularExpression reg_exp("[0-9]{1,5}");
     ui->sizeEdit->setValidator(new QRegularExpressionValidator(reg_exp, this));
     ui->searchEdit->setValidator(new QRegularExpressionValidator(reg_exp, this));
@@ -56,6 +56,14 @@ void MainWindow::CreateButton_clicked(){
 }
 
 void MainWindow::SearchButton_clicked(){
+    if(ui->searchEdit->text().isEmpty()){
+        ui->statusbar->showMessage("Елемент відсутній.");
+        ui->searchEdit->setStyleSheet("background : red;");
+        return;
+    }
+    else{
+       ui->searchEdit->setStyleSheet("background : white;");
+    }
     if(!ui->indexEdit->text().isEmpty()){
         ui->massiveTable->item(ui->indexEdit->text().toInt(), 0)->setBackground(Qt::white);
     }
@@ -98,6 +106,7 @@ void MainWindow::SearchEdit_changet(){
     ui->statusbar->clearMessage();
     ui->searchEdit->setStyleSheet("background : white;");
     ui->searchButton->setEnabled(!ui->searchEdit->text().isEmpty() && ui->searchEdit->text().toInt() != 0);
+    ui->saveButton->setEnabled(false);
     if(ui->searchEdit->text().toInt() == 0 && !ui->searchEdit->text().isEmpty()){
         ui->statusbar->showMessage("Введіть значення,  більше 0.");
         ui->searchEdit->setStyleSheet("background : red;");
@@ -121,6 +130,27 @@ void MainWindow::on_showMassButton_clicked()
 
 void MainWindow::on_saveButton_clicked()
 {
+    QFile out_file("C:\\ReposQt\\SearchInMassive\\search result.txt");
+    if (out_file.open(QIODevice::WriteOnly))
+    {
+        QTextStream out(&out_file);
+        out << "Елемент: (" + ui->searchEdit->text() + ")";
+        if(ui->indexEdit->text() == "Елемент відсутній"){
+              out << " відсутній у масиві:\n";
+        }
+        else{
+              out << " розташований за індексом: (" + ui->indexEdit->text() + ") у масиві:\n";
+        }
+        for (int i=0;i<algoritm->getSize()-1;i++){
+            out<<algoritm->getElement(i) << ",  ";
+        }
+        out<<algoritm->getElement(algoritm->getSize()-1) << ";\n";
+        out_file.close();
+        ui->statusbar->showMessage("Збережено.");
+    }
+    else {
 
+        qWarning("Could not open file");
+    }
 }
 
