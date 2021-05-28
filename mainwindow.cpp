@@ -43,6 +43,9 @@ void MainWindow::CreateButton_clicked(){
     ui->label_5->setVisible(false);
     ui->massiveTable->setVisible(false);
     ui->showMassButton->setEnabled(true);
+    ui->showMassButton->setFocus();
+    ui->searchButton->setEnabled(false);
+    ui->checkBox->setEnabled(true);
     ui->searchEdit->setEnabled(true);
     ui->saveButton->setEnabled(false);
     ui->searchEdit->clear();
@@ -56,14 +59,6 @@ void MainWindow::CreateButton_clicked(){
 }
 
 void MainWindow::SearchButton_clicked(){
-    if(ui->searchEdit->text().isEmpty()){
-        ui->statusbar->showMessage("Елемент відсутній.");
-        ui->searchEdit->setStyleSheet("background : red;");
-        return;
-    }
-    else{
-       ui->searchEdit->setStyleSheet("background : white;");
-    }
     if(!ui->indexEdit->text().isEmpty()){
         ui->massiveTable->item(ui->indexEdit->text().toInt(), 0)->setBackground(Qt::white);
     }
@@ -87,8 +82,7 @@ void MainWindow::SearchButton_clicked(){
     }
     if(str == "Метод хеш-функції"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        //p = algoritm->pos_search();
-        p = 99;
+        p = algoritm->hash_function_search();
         ui->statusbar->showMessage("Відбувся пошук хеш-функцією. Pos = "+QString::number(p));
     }
 
@@ -118,12 +112,15 @@ void MainWindow::on_showMassButton_clicked()
 {
     ui->massiveTable->setRowCount(algoritm->getSize());
     ui->massiveTable->setColumnCount(1);
+    QStringList horizontal_names;
     for (int i=0;i<ui->massiveTable->rowCount();i++){
         for (int j=0;j<ui->massiveTable->columnCount();j++){
+            horizontal_names << QString::number(i);
             QTableWidgetItem *newItem = new QTableWidgetItem(tr("%1").arg(algoritm->getElement(i)));
             ui->massiveTable->setItem(i, j, newItem);
         }
     }
+    ui->massiveTable->setVerticalHeaderLabels(horizontal_names);
     ui->massiveTable->setHorizontalHeaderLabels(QStringList() << "Елемент");
 }
 

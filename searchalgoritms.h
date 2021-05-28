@@ -1,6 +1,7 @@
 #ifndef SEARCHALGORITMS_H
 #define SEARCHALGORITMS_H
 #include "workwithmass.h"
+#include "hashtable.h"
 
 class SearchAlgoritms: public WorkWithMass
 {
@@ -23,6 +24,8 @@ public:
     int pos_search();
 
     int interpolar_search();
+
+    int hash_function_search();
 };
 
 #endif // SEARCHALGORITMS_H

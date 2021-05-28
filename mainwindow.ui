@@ -154,17 +154,14 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
+             <widget class="QCheckBox" name="checkBox">
+              <property name="enabled">
+               <bool>false</bool>
               </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
+              <property name="text">
+               <string>Показати статистику</string>
               </property>
-             </spacer>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="searchButton">
@@ -253,6 +250,12 @@
             <property name="checked">
              <bool>true</bool>
             </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+            <property name="default">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
@@ -308,7 +311,7 @@
          </size>
         </property>
         <attribute name="horizontalHeaderVisible">
-         <bool>true</bool>
+         <bool>false</bool>
         </attribute>
         <attribute name="verticalHeaderCascadingSectionResizes">
          <bool>false</bool>

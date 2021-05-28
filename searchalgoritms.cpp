@@ -97,3 +97,12 @@ int SearchAlgoritms::recurs_interpolar_search(int begin, int end)
     }
     return -1;
 }
+
+int SearchAlgoritms::hash_function_search(){
+    hashtable hash_table(getSize()>10?getSize()/10:getSize());
+    for(int i=0;i<getSize();i++){
+        hash_table.add_element(massive[i], i);
+    }
+    int index = hash_table.search_element(value);
+    return index;
+}
