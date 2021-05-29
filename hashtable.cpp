@@ -22,8 +22,10 @@ void hashtable::add_element(int data, int index){
     table[our_hash].push_back(our_pair);
 }
 
-int hashtable::search_element(int data){
+int hashtable::search_element(int data, unsigned& c, unsigned& b, unsigned& r){
     int our_hash = hash(data);
+    b++;
+    c++;
     if(table[our_hash].empty())
     {
         return -1;
@@ -33,6 +35,7 @@ int hashtable::search_element(int data){
 
     while(it != table[our_hash].end())
     {
+        c++;
         if((*it).first == data)
             return (*it).second;
 

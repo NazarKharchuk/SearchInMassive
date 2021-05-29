@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -64,26 +65,52 @@ void MainWindow::SearchButton_clicked(){
     }
     ui->saveButton->setEnabled(true);
     int p=-1;
+    unsigned comparison ,basic_operations,recursive_calls;
+    comparison = basic_operations = recursive_calls =0;
     QString str = ui->comboBox->currentText();
     if(str == "Послідовний пошук"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        p = algoritm->pos_search();
+        p = algoritm->pos_search(comparison ,basic_operations,recursive_calls);
         ui->statusbar->showMessage("Відбувся послідовний пошук. Pos = "+QString::number(p));
+        if(ui->checkBox->isChecked()) {
+            QString str ="";
+            str = str + "Порівнянь - " + QString::number(comparison) + "\nЕлементарних операцій - ";
+            str = str + QString::number(basic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
+            QMessageBox::information(this, "Статистика",str);
+        }
     }
     if(str == "Метод Фібоначі"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        p = algoritm->fibonachii_search();
+        p = algoritm->fibonachii_search(comparison ,basic_operations,recursive_calls);
         ui->statusbar->showMessage("Відбувся пошук Фібоначі. Pos = "+QString::number(p));
+        if(ui->checkBox->isChecked()) {
+            QString str ="";
+            str = str + "Порівнянь - " + QString::number(comparison) + "\nЕлементарних операцій - ";
+            str = str + QString::number(basic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
+            QMessageBox::information(this, "Статистика",str);
+        }
     }
     if(str == "Інтерполяційний метод"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        p = algoritm->interpolar_search();
+        p = algoritm->interpolar_search(comparison ,basic_operations,recursive_calls);
         ui->statusbar->showMessage("Відбувся інтерполяційний пошук. Pos = "+QString::number(p));
+        if(ui->checkBox->isChecked()) {
+            QString str ="";
+            str = str + "Порівнянь - " + QString::number(comparison) + "\nЕлементарних операцій - ";
+            str = str + QString::number(basic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
+            QMessageBox::information(this, "Статистика",str);
+        }
     }
     if(str == "Метод хеш-функції"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        p = algoritm->hash_function_search();
+        p = algoritm->hash_function_search(comparison ,basic_operations,recursive_calls);
         ui->statusbar->showMessage("Відбувся пошук хеш-функцією. Pos = "+QString::number(p));
+        if(ui->checkBox->isChecked()) {
+            QString str ="";
+            str = str + "Порівнянь - " + QString::number(comparison) + "\nЕлементарних операцій - ";
+            str = str + QString::number(basic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
+            QMessageBox::information(this, "Статистика",str);
+        }
     }
 
     if(p==-1){
