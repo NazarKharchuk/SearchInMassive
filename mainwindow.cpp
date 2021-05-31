@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 
+/***************************************
+*   Конструктор класу MainWindow       *
+***************************************/
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -20,11 +23,17 @@ MainWindow::MainWindow(QWidget *parent)
     algoritm = new SearchAlgoritms(0, 0);
 }
 
+/***************************************
+*   Деструктор класу MainWindow        *
+***************************************/
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/***************************************************************
+*   Слот, що праює при зміні поля введення розміру масиву      *
+***************************************************************/
 void MainWindow::SizeEdit_changet(){
     ui->statusbar->clearMessage();
     ui->sizeEdit->setStyleSheet("background : white;");
@@ -40,6 +49,9 @@ void MainWindow::SizeEdit_changet(){
     }
 }
 
+/***************************************************************
+*   Слот, що праює при натиску кнопки створення масиву         *
+***************************************************************/
 void MainWindow::CreateButton_clicked(){
     ui->label_5->setVisible(false);
     ui->massiveTable->setVisible(false);
@@ -59,56 +71,59 @@ void MainWindow::CreateButton_clicked(){
     algoritm->init_mass();
 }
 
+/***************************************************************
+*   Слот, що праює при натиску кнопки пошуку елемента          *
+***************************************************************/
 void MainWindow::SearchButton_clicked(){
     if(!ui->indexEdit->text().isEmpty()){
         ui->massiveTable->item(ui->indexEdit->text().toInt(), 0)->setBackground(Qt::white);
     }
     ui->saveButton->setEnabled(true);
     int p=-1;
-    unsigned comparison ,basic_operations,recursive_calls;
-    comparison = basic_operations = recursive_calls =0;
+    unsigned comparison ,arithmetic_operations,recursive_calls;
+    comparison = arithmetic_operations = recursive_calls =0;
     QString str = ui->comboBox->currentText();
     if(str == "Послідовний пошук"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        p = algoritm->pos_search(comparison ,basic_operations,recursive_calls);
-        ui->statusbar->showMessage("Відбувся послідовний пошук. Pos = "+QString::number(p));
+        p = algoritm->pos_search(comparison ,arithmetic_operations,recursive_calls);
+        ui->statusbar->showMessage("Відбувся послідовний пошук.");
         if(ui->checkBox->isChecked()) {
             QString str ="";
-            str = str + "Порівнянь - " + QString::number(comparison) + "\nЕлементарних операцій - ";
-            str = str + QString::number(basic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
+            str = str + "Порівнянь - " + QString::number(comparison) + "\nАрифметичних операцій - ";
+            str = str + QString::number(arithmetic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
             QMessageBox::information(this, "Статистика",str);
         }
     }
     if(str == "Метод Фібоначі"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        p = algoritm->fibonachii_search(comparison ,basic_operations,recursive_calls);
-        ui->statusbar->showMessage("Відбувся пошук Фібоначі. Pos = "+QString::number(p));
+        p = algoritm->fibonachii_search(comparison ,arithmetic_operations,recursive_calls);
+        ui->statusbar->showMessage("Відбувся пошук Фібоначі.");
         if(ui->checkBox->isChecked()) {
             QString str ="";
-            str = str + "Порівнянь - " + QString::number(comparison) + "\nЕлементарних операцій - ";
-            str = str + QString::number(basic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
+            str = str + "Порівнянь - " + QString::number(comparison) + "\nАрифметичних операцій - ";
+            str = str + QString::number(arithmetic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
             QMessageBox::information(this, "Статистика",str);
         }
     }
     if(str == "Інтерполяційний метод"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        p = algoritm->interpolar_search(comparison ,basic_operations,recursive_calls);
-        ui->statusbar->showMessage("Відбувся інтерполяційний пошук. Pos = "+QString::number(p));
+        p = algoritm->interpolar_search(comparison ,arithmetic_operations,recursive_calls);
+        ui->statusbar->showMessage("Відбувся інтерполяційний пошук.");
         if(ui->checkBox->isChecked()) {
             QString str ="";
-            str = str + "Порівнянь - " + QString::number(comparison) + "\nЕлементарних операцій - ";
-            str = str + QString::number(basic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
+            str = str + "Порівнянь - " + QString::number(comparison) + "\nАрифметичних операцій - ";
+            str = str + QString::number(arithmetic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
             QMessageBox::information(this, "Статистика",str);
         }
     }
     if(str == "Метод хеш-функції"){
         algoritm->setValue(ui->searchEdit->text().toInt());
-        p = algoritm->hash_function_search(comparison ,basic_operations,recursive_calls);
-        ui->statusbar->showMessage("Відбувся пошук хеш-функцією. Pos = "+QString::number(p));
+        p = algoritm->hash_function_search(comparison ,arithmetic_operations,recursive_calls);
+        ui->statusbar->showMessage("Відбувся пошук хеш-функцією.");
         if(ui->checkBox->isChecked()) {
             QString str ="";
-            str = str + "Порівнянь - " + QString::number(comparison) + "\nЕлементарних операцій - ";
-            str = str + QString::number(basic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
+            str = str + "Порівнянь - " + QString::number(comparison) + "\nАрифметичних операцій - ";
+            str = str + QString::number(arithmetic_operations) + "\nРекурсивних викликів - " + QString::number(recursive_calls);
             QMessageBox::information(this, "Статистика",str);
         }
     }
@@ -123,6 +138,9 @@ void MainWindow::SearchButton_clicked(){
     }
 }
 
+/***************************************************************
+*   Слот, що праює при зміні поля введення шуканого елемента   *
+***************************************************************/
 void MainWindow::SearchEdit_changet(){
     ui->statusbar->clearMessage();
     ui->searchEdit->setStyleSheet("background : white;");
@@ -135,6 +153,9 @@ void MainWindow::SearchEdit_changet(){
     }
 }
 
+/***************************************************************
+*   Слот, що праює при натиску кнопки відображення масиву      *
+***************************************************************/
 void MainWindow::on_showMassButton_clicked()
 {
     ui->massiveTable->setRowCount(algoritm->getSize());
@@ -151,7 +172,9 @@ void MainWindow::on_showMassButton_clicked()
     ui->massiveTable->setHorizontalHeaderLabels(QStringList() << "Елемент");
 }
 
-
+/***************************************************************
+*   Слот, що праює при натиску кнопки збереження результату    *
+***************************************************************/
 void MainWindow::on_saveButton_clicked()
 {
     QFile out_file("C:\\ReposQt\\SearchInMassive\\search result.txt");
