@@ -67,5 +67,6 @@ int hashtable::search_element(int data, unsigned& c_operations, unsigned& a_oper
 
         it++;
     }
+    c_operations++;
     return -1;
 }

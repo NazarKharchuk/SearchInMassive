@@ -45,8 +45,8 @@ void WorkWithMass::delete_mass(){
 ****************************************/
 void WorkWithMass::init_mass(){
     for (int i = 0; i < size; i++) {
-        if (i == 0) massive[i] = rand() % 50+1;
-        else massive[i] = massive[i - 1] + rand() % 50+1;
+        if (i == 0) massive[i] = rand() % 30+1;
+        else massive[i] = massive[i - 1] + rand() % 30+1;
     }
 }
 

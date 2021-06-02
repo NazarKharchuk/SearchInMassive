@@ -33,15 +33,18 @@ int SearchAlgoritms::fibonachii_search( unsigned& c_operations, unsigned& a_oper
     int fibon2 = 0;
     int fibon1 = 1;
     int fibon = fibon1 + fibon2;
-    a_operations+=3;
+    a_operations++;
     c_operations++;
     while (fibon1 + fibon <= size + 1) {
+        a_operations+=2;
         c_operations++;
         fibon2 = fibon1;
         fibon1 = fibon;
         fibon = fibon1 + fibon2;
         a_operations++;
     }
+    a_operations+=2;
+    c_operations++;
     int M = fibon1 + fibon - size - 1, i = fibon - M, p = fibon1, q = fibon2;
     a_operations+=4;
     return recurs_fibonachi_search(i, p, q, c_operations, a_operations, r_operations);
@@ -167,10 +170,16 @@ int SearchAlgoritms::recurs_interpolar_search(int begin, int end, unsigned& c_op
     c_operations+=value >= massive[begin]?2:1;
     if (begin <= end && value >= massive[begin] && value <= massive[end]) {
         c_operations++;
-        int i;
         c_operations++;
-        i = begin != end ? begin + ((end - begin) * (value - massive[begin])) / (massive[end] - massive[begin]): begin;
-        a_operations += begin != end ? 6: 0;
+        if(begin == end){
+            c_operations++;
+            if(value == massive[begin]) return begin;
+            else return -1;
+        }
+
+        int i = begin + (((double)(end-begin)/(massive[end] - massive[begin]))*(value - massive[begin]));
+
+        a_operations += 6;
         c_operations++;
         if (value == massive[i]) {
             return i;

@@ -3,7 +3,7 @@
 #include <QMessageBox>
 
 /***************************************
-*   Конструктор класу MainWindow       *
+*     структор класу MainWindow        *
 ***************************************/
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,8 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->massiveTable->hide();
     //layout()->setSizeConstraint(QLayout::SetFixedSize);
     QRegularExpression reg_exp("[0-9]{1,5}");
+    QRegularExpression reg_exp2("[0-9]{1,9}");
     ui->sizeEdit->setValidator(new QRegularExpressionValidator(reg_exp, this));
-    ui->searchEdit->setValidator(new QRegularExpressionValidator(reg_exp, this));
+    ui->searchEdit->setValidator(new QRegularExpressionValidator(reg_exp2, this));
     connect(ui->sizeEdit, SIGNAL(textEdited(QString)), this, SLOT(SizeEdit_changet()));
     connect(ui->searchEdit, SIGNAL(textEdited(QString)), this, SLOT(SearchEdit_changet()));
     connect(ui->createButton, SIGNAL(clicked()), this, SLOT(CreateButton_clicked()));
